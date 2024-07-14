@@ -19,7 +19,7 @@
     "formik": "^2.4.6",
     "framer-motion": "^11.2.13",
     "jwt-decode": "^4.0.0",
-    "lucide-react": "^0.403.0",
+    "lucide-react": "^0.408.0",
     "next": "14.2.4",
     "react": "^18",
     "react-dom": "^18",
