@@ -1,4 +1,4 @@
-export interface NavbarType {
+export interface MenuTypes {
   id?: number;
   title?: string;
 }

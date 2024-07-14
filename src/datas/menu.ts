@@ -1,6 +1,6 @@
-import { NavbarType } from '@/types';
+import { MenuTypes } from '../types/Menu';
 
-export const NavbarData: NavbarType[] = [
+export const MenuItems: MenuTypes[] = [
   {
     id: 1,
     title: 'Belajar'
