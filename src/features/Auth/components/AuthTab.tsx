@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import {
   Button,
   Input,
@@ -12,6 +13,9 @@ import { useFormik } from 'formik';
 import { LockKeyhole, Mail, SquareUserRound, UsersRound } from 'lucide-react';
 import { usePathname, useRouter } from 'next/navigation';
 import { useAuthLogin, useAuthRegister } from '../hooks';
+import { RegisterSchema } from '@/validations/auth';
+import { EyeSlashFilledIcon } from './EyeSlashFilledIcon';
+import { EyeFilledIcon } from './EyeFilledIcon';
 
 const AuthTab = () => {
   const { push } = useRouter();
@@ -48,6 +52,7 @@ const AuthTab = () => {
       confirm_password: '',
       role: ''
     },
+    validationSchema: RegisterSchema,
     onSubmit: values => {
       register(values);
     }
@@ -67,6 +72,10 @@ const AuthTab = () => {
     formRegister.setFieldValue(event.target.name, event.target.value);
     formLogin.setFieldValue(event.target.name, event.target.value);
   };
+
+  const [isVisible, setIsVisible] = useState(false);
+
+  const toggleVisibility = () => setIsVisible(!isVisible);
 
   return (
     <Tabs
@@ -92,7 +101,6 @@ const AuthTab = () => {
               onChange={handleFormInput}
             />
             <Input
-              type="password"
               name="password"
               label="Kata Sandi"
               labelPlacement="outside"
@@ -101,6 +109,20 @@ const AuthTab = () => {
               startContent={
                 <LockKeyhole className="pointer-events-none flex-shrink-0" />
               }
+              endContent={
+                <button
+                  className="focus:outline-none"
+                  type="button"
+                  onClick={toggleVisibility}
+                >
+                  {isVisible ? (
+                    <EyeSlashFilledIcon className="pointer-events-none text-2xl text-default-400" />
+                  ) : (
+                    <EyeFilledIcon className="pointer-events-none text-2xl text-default-400" />
+                  )}
+                </button>
+              }
+              type={isVisible ? 'text' : 'password'}
               className="lg:w-[24rem]"
               onChange={handleFormInput}
             />
@@ -114,7 +136,7 @@ const AuthTab = () => {
             >
               Masuk Sekarang
             </Button>
-            <p className="mt-6 text-center text-xs text-primary-2 md:text-base">
+            <p className="mt-6 text-center text-xs text-primary-2 md:text-sm">
               Masuk sekarang untuk mulai menjelajahi budaya Indonesia!
             </p>
           </div>
@@ -122,13 +144,19 @@ const AuthTab = () => {
       </Tab>
       <Tab key="/sign-up" title="Daftar" href="/sign-up">
         <form onSubmit={formRegister.handleSubmit}>
-          <div className="mt-4 flex flex-col items-center justify-center gap-6">
+          <div className="mt-4 flex flex-col items-center justify-center gap-4">
             <Input
               type="text"
+              size="lg"
               name="username"
               label="Nama Pengguna"
               labelPlacement="outside"
-              size="lg"
+              errorMessage={formRegister.errors.username}
+              isInvalid={
+                !!(
+                  formRegister.touched.username && formRegister.errors.username
+                )
+              }
               isRequired
               startContent={
                 <SquareUserRound className="pointer-events-none flex-shrink-0" />
@@ -143,6 +171,10 @@ const AuthTab = () => {
               labelPlacement="outside"
               size="lg"
               isRequired
+              errorMessage={formRegister.errors.email}
+              isInvalid={
+                !!(formRegister.touched.email && formRegister.errors.email)
+              }
               startContent={
                 <Mail className="pointer-events-none flex-shrink-0" />
               }
@@ -150,28 +182,67 @@ const AuthTab = () => {
               onChange={handleFormInput}
             />
             <Input
-              type="password"
               name="password"
               label="Kata Sandi"
               labelPlacement="outside"
               size="lg"
               isRequired
+              errorMessage={formRegister.errors.password}
+              isInvalid={
+                !!(
+                  formRegister.touched.password && formRegister.errors.password
+                )
+              }
               startContent={
                 <LockKeyhole className="pointer-events-none flex-shrink-0" />
               }
+              endContent={
+                <button
+                  className="focus:outline-none"
+                  type="button"
+                  onClick={toggleVisibility}
+                >
+                  {isVisible ? (
+                    <EyeSlashFilledIcon className="pointer-events-none text-2xl text-default-400" />
+                  ) : (
+                    <EyeFilledIcon className="pointer-events-none text-2xl text-default-400" />
+                  )}
+                </button>
+              }
+              type={isVisible ? 'text' : 'password'}
               className="lg:w-[24rem]"
               onChange={handleFormInput}
             />
             <Input
-              type="password"
               name="confirm_password"
               label="Konfirmasi Kata Sandi"
               labelPlacement="outside"
               size="lg"
               isRequired
+              errorMessage={formRegister.errors.confirm_password}
+              isInvalid={
+                !!(
+                  formRegister.touched.confirm_password &&
+                  formRegister.errors.confirm_password
+                )
+              }
               startContent={
                 <LockKeyhole className="pointer-events-none flex-shrink-0" />
               }
+              endContent={
+                <button
+                  className="focus:outline-none"
+                  type="button"
+                  onClick={toggleVisibility}
+                >
+                  {isVisible ? (
+                    <EyeSlashFilledIcon className="pointer-events-none text-2xl text-default-400" />
+                  ) : (
+                    <EyeFilledIcon className="pointer-events-none text-2xl text-default-400" />
+                  )}
+                </button>
+              }
+              type={isVisible ? 'text' : 'password'}
               className="lg:w-[24rem]"
               onChange={handleFormInput}
             />
@@ -181,6 +252,10 @@ const AuthTab = () => {
               labelPlacement="outside"
               size="lg"
               isRequired
+              errorMessage={formRegister.errors.role}
+              isInvalid={
+                !!(formRegister.touched.role && formRegister.errors.role)
+              }
               startContent={
                 <UsersRound className="pointer-events-none flex-shrink-0" />
               }
@@ -200,7 +275,7 @@ const AuthTab = () => {
                 size="lg"
                 fullWidth
                 isLoading
-                className="mt-10 bg-primary-1 font-medium text-white-1"
+                className="mt-6 bg-primary-1 font-medium text-white-1"
               >
                 Daftar Sekarang
               </Button>
@@ -209,13 +284,13 @@ const AuthTab = () => {
                 type="submit"
                 size="lg"
                 fullWidth
-                className="mt-10 bg-primary-1 font-medium text-white-1"
+                className="mt-6 bg-primary-1 font-medium text-white-1"
               >
                 Daftar Sekarang
               </Button>
             )}
 
-            <p className="mt-6 text-center text-xs text-primary-2 md:text-base">
+            <p className="mt-2 text-center text-xs text-primary-2 md:text-sm">
               Daftarkan diri anda sekarang untuk mulai menjelajahi budaya
               Indonesia!
             </p>
