@@ -11,38 +11,22 @@ import {
 } from '@nextui-org/react';
 import { useFormik } from 'formik';
 import { LockKeyhole, Mail, SquareUserRound, UsersRound } from 'lucide-react';
-import { usePathname, useRouter } from 'next/navigation';
-import { useAuthLogin, useAuthRegister } from '../hooks';
+import { usePathname } from 'next/navigation';
 import { RegisterSchema } from '@/validations/auth';
 import { EyeSlashFilledIcon } from './EyeSlashFilledIcon';
 import { EyeFilledIcon } from './EyeFilledIcon';
+import { useAuthLogin, useAuthRegister } from '../hooks';
 
 const AuthTab = () => {
-  const { push } = useRouter();
   const pathname = usePathname();
+
+  const { mutate: register, isPending } = useAuthRegister();
+  const { mutate: login } = useAuthLogin();
+
   const roles = [
     { key: 'USER', label: 'Pengguna' },
     { key: 'TEACHER', label: 'Guru' }
   ];
-
-  const { mutate: register, isPending } = useAuthRegister({
-    onSuccess: () => {
-      console.log('success');
-    },
-    onError: (error: any) => {
-      console.log(error);
-    }
-  });
-
-  const { mutate: login } = useAuthLogin({
-    onSuccess: (data: any) => {
-      console.log(data);
-      push('/dashboard');
-    },
-    onError: (error: any) => {
-      console.log(error);
-    }
-  });
 
   const formRegister = useFormik({
     initialValues: {
