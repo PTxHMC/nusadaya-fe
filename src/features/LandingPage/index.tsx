@@ -1,6 +1,6 @@
 'use client';
 import { Button } from '@nextui-org/react';
-import NavigationBar from '@/components/NavigationBar';
+import NavigationBar from '@/components/navigation-bar';
 
 const LandingPage = () => {
   return (

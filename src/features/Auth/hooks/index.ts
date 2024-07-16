@@ -1,5 +1,5 @@
-import { AuthService } from '@/service/Auth';
-import { LoginType, RegisterType } from '@/types/Auth';
+import { AuthService } from '@/service/auth';
+import { LoginType, RegisterType } from '@/types/auth';
 import { useMutation } from '@tanstack/react-query';
 
 const useAuthRegister = ({ onSuccess, onError }: any) => {
