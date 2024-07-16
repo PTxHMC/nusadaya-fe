@@ -50,7 +50,12 @@ const NavigationBar = () => {
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem>
-          <Button variant="bordered" className="border-gray-700">
+          <Button
+            as={Link}
+            href="/sign-up"
+            variant="bordered"
+            className="border-gray-700"
+          >
             Daftar
           </Button>
         </NavbarItem>
