@@ -1,12 +1,13 @@
 'use client';
 import { Button } from '@nextui-org/react';
 import NavigationBar from '@/components/navigation-bar';
+import Footer from '@/components/footer';
 
 const LandingPage = () => {
   return (
-    <div className="min-h-screen bg-[url('/assets/bg-landing.png')] bg-cover bg-center bg-no-repeat">
+    <div className="min-h-screen">
       <NavigationBar />
-      <main className="mx-12 my-16 flex flex-col items-center justify-center gap-5 sm:my-28 md:justify-center">
+      <main className="flex h-screen flex-col items-center gap-5 bg-[url('/assets/bg-landing.png')] bg-cover bg-center bg-no-repeat py-40">
         <h1 className="text-balance px-2 text-center text-4xl font-semibold leading-tight text-[#4F4F4F] md:px-12 lg:px-24 xl:text-6xl xl:leading-normal">
           Lestarikan{' '}
           <span className="font-bold text-[#9C8D8D]">Budaya Kita</span> dengan{' '}
@@ -20,6 +21,7 @@ const LandingPage = () => {
           Mulai Belajar
         </Button>
       </main>
+      <Footer />
     </div>
   );
 };

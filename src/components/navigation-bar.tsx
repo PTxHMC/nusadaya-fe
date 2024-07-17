@@ -21,7 +21,7 @@ const NavigationBar = () => {
       isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}
       maxWidth="2xl"
-      className="bg-transparent backdrop-blur-none"
+      className="absolute top-0 bg-transparent backdrop-blur-none"
     >
       <NavbarContent>
         <NavbarMenuToggle
