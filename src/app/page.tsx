@@ -1,9 +1,9 @@
-import { Button } from '@nextui-org/react';
+import LandingPage from '@/features/LandingPage';
 
 export default function Home() {
   return (
     <main>
-      <Button>Button</Button>
+      <LandingPage />
     </main>
   );
 }
