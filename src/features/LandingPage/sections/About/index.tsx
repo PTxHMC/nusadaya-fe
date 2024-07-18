@@ -2,7 +2,10 @@ import Image from 'next/image';
 
 const AboutSection = () => {
   return (
-    <section className="mt-24 flex flex-col-reverse gap-x-24 gap-y-10 px-12 py-8 text-center md:text-start lg:flex-row lg:justify-between">
+    <section
+      id="Tentang Kami"
+      className="mt-24 flex flex-col-reverse gap-x-24 gap-y-10 px-12 py-8 text-center md:text-start lg:flex-row lg:justify-between"
+    >
       <div className="lg:flex-shrink-0 lg:flex-grow">
         <Image
           src="/assets/about-section.svg"

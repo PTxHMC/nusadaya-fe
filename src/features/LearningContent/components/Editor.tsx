@@ -4,7 +4,7 @@ import { useCreateBlockNote } from '@blocknote/react';
 import { BlockNoteView } from '@blocknote/mantine';
 import '@blocknote/mantine/style.css';
 import { useFormik } from 'formik';
-import { Button, Checkbox, CheckboxGroup } from '@nextui-org/react';
+import { Button, Checkbox, CheckboxGroup, Link } from '@nextui-org/react';
 import ReactTextareaAutosize from 'react-textarea-autosize';
 import { useCreateContent, useGetCategories } from '../hooks';
 import { Send } from 'lucide-react';
@@ -14,22 +14,14 @@ import Image from 'next/image';
 const Editor = () => {
   const [imageUrl, setImageUrl] = useState('');
 
-  const { mutate: createContent, isPending } = useCreateContent({
-    onSuccess: (data: any) => {
-      console.log('success', data);
-    },
-    onError: (error: any) => {
-      console.log(error);
-    }
-  });
+  const { mutate: createContent, isPending } = useCreateContent();
 
   const { data: categories, isSuccess } = useGetCategories();
 
   const editor = useCreateBlockNote({
     initialContent: [
       {
-        type: 'paragraph',
-        content: 'Ketikkan isi di sini...'
+        type: 'paragraph'
       }
     ]
   });
@@ -73,9 +65,9 @@ const Editor = () => {
   };
 
   return (
-    <div className="mt-16">
-      {imageUrl ? (
-        <div className="h-80 w-full rounded-xl px-6">
+    <div className="mt-16 pt-8">
+      {imageUrl && (
+        <div className="mb-4 h-80 w-full rounded-xl px-6">
           <div className="relative h-full w-full overflow-hidden rounded-xl border-2">
             <Image
               src={imageUrl}
@@ -86,7 +78,7 @@ const Editor = () => {
             />
           </div>
         </div>
-      ) : null}
+      )}
       <form
         onSubmit={formik.handleSubmit}
         className="mx-6 rounded-2xl bg-white shadow-md shadow-primary-2"
@@ -100,6 +92,8 @@ const Editor = () => {
           ></ReactTextareaAutosize>
           <div className="flex gap-3">
             <Button
+              as={Link}
+              href="/dashboard"
               variant="bordered"
               className="border-[#6B6673] text-[#6B6673]"
             >

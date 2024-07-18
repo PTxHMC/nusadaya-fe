@@ -1,15 +1,15 @@
-import MainDash from './Lecturer/Main';
+import MulaiBelajar from './MulaiBelajar';
 import MateriSaya from './Materi/MateriSaya';
 import MateriSemua from './Materi/MateriSemua';
 
-const DashboardPage = () => {
+const BelajarPage = () => {
   return (
     <div>
-      <MainDash />
+      <MulaiBelajar />
       <MateriSaya />
       <MateriSemua />
     </div>
   );
 };
 
-export default DashboardPage;
+export default BelajarPage;

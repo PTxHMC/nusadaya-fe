@@ -1,5 +1,5 @@
 import { fetcher } from '@/lib/axios';
-import { LoginType, RegisterType } from '@/types/Auth';
+import { LoginType, RegisterType } from '@/types/auth';
 
 export const AuthService = {
   register: async (body: RegisterType) => {
@@ -20,7 +20,6 @@ export const AuthService = {
       const res = await fetcher.get('users/token');
       return res.data;
     } catch (error) {
-      console.log(error);
       throw error;
     }
   }

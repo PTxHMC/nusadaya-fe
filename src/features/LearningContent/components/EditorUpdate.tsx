@@ -4,7 +4,7 @@ import { useCreateBlockNote } from '@blocknote/react';
 import { BlockNoteView } from '@blocknote/mantine';
 import '@blocknote/mantine/style.css';
 import { useFormik } from 'formik';
-import { Button, Checkbox, CheckboxGroup } from '@nextui-org/react';
+import { Button, Checkbox, CheckboxGroup, Link } from '@nextui-org/react';
 import ReactTextareaAutosize from 'react-textarea-autosize';
 import {
   useGetCategories,
@@ -23,17 +23,7 @@ const EditorUpdate = () => {
     useGetContentById(idContent);
   const { data: categories, isSuccess: categorySuccess } = useGetCategories();
 
-  const { mutate: updateContent, isPending } = useUpdateContent(
-    {
-      onSuccess: (data: any) => {
-        console.log('success', data);
-      },
-      onError: (error: any) => {
-        console.log(error);
-      }
-    },
-    idContent
-  );
+  const { mutate: updateContent, isPending } = useUpdateContent(idContent);
 
   const [imageUrl, setImageUrl] = useState('');
 
@@ -99,9 +89,9 @@ const EditorUpdate = () => {
   }, [contentSuccess]);
 
   return (
-    <div className="mt-16">
+    <div className="mt-16 py-8">
       {imageUrl ? (
-        <div className="h-80 w-full rounded-xl px-6">
+        <div className="mb-4 h-80 w-full rounded-xl px-6">
           <div className="relative h-full w-full overflow-hidden rounded-xl border-2">
             <Image
               src={imageUrl}
@@ -113,7 +103,7 @@ const EditorUpdate = () => {
           </div>
         </div>
       ) : (
-        <div className="h-80 w-full rounded-xl px-6">
+        <div className="mb-4 h-80 w-full rounded-xl px-6">
           <div className="relative h-full w-full overflow-hidden rounded-xl border-2">
             <Image
               src={
@@ -143,6 +133,8 @@ const EditorUpdate = () => {
           ></ReactTextareaAutosize>
           <div className="flex gap-3">
             <Button
+              as={Link}
+              href="/dashboard"
               variant="bordered"
               className="border-[#6B6673] text-[#6B6673]"
             >

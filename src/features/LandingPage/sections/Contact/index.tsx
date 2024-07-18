@@ -35,7 +35,10 @@ const ContactSection = () => {
   });
 
   return (
-    <section className="my-24 flex flex-col gap-x-24 gap-y-10 p-8 lg:flex-row lg:justify-between lg:px-36">
+    <section
+      id="Hubungi Kami"
+      className="my-24 flex flex-col gap-x-24 gap-y-10 p-8 lg:flex-row lg:justify-between lg:px-36"
+    >
       <div className="max-w-3xl text-primary-text lg:flex-shrink-0 lg:flex-grow">
         <h2 className="text-5xl font-bold">Hubungi Kami</h2>
         <form onSubmit={formContact.handleSubmit}>

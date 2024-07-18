@@ -1,6 +1,6 @@
 import { AuthService } from '@/service/AuthService';
-import { LoginType, RegisterType } from '@/types/Auth';
-import { useMutation } from '@tanstack/react-query';
+import { LoginType, RegisterType } from '@/types/auth';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 
@@ -58,4 +58,14 @@ const useAuthLogin = () => {
   });
 };
 
-export { useAuthRegister, useAuthLogin, useAuthLogout };
+const useGetAccessToken = () => {
+  return useQuery({
+    queryKey: ['getAccessToken'],
+    queryFn: async () => {
+      const res = await AuthService.getAccessToken();
+      return res.data;
+    }
+  });
+};
+
+export { useAuthRegister, useAuthLogin, useAuthLogout, useGetAccessToken };

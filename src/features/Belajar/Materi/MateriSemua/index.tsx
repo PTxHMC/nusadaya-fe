@@ -5,6 +5,7 @@ import { useGetContents } from '../../hooks';
 import Image from 'next/image';
 import { formatDate } from '@/lib/utils';
 import { useRouter } from 'next/navigation';
+import placeholderThumbnail from '@/assets/image-placeholder.png';
 
 const MateriSemua = () => {
   const { data: contentData, isSuccess } = useGetContents();
@@ -17,20 +18,12 @@ const MateriSemua = () => {
   };
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto py-8">
       <div className="mx-6 flex flex-col gap-8 border-t-1">
-        <div className="mt-6 flex items-center justify-between">
-          <h1 className="text-2xl font-bold text-primary-text">
-            Materi Pilihan Untuk Anda
-          </h1>
-          <Button
-            variant="solid"
-            className="border-solid border-[#F0F0F0] bg-white-1 font-bold text-[#6B6673] shadow-md"
-          >
-            Lihat Lebih Banyak
-          </Button>
-        </div>
-        <div className="my-2 grid grid-cols-5 gap-4">
+        <h1 className="mt-6 text-2xl font-bold text-primary-text">
+          Materi Pilihan Untuk Anda
+        </h1>
+        <div className="my-2 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {isSuccess ? (
             contentData.map((item: any) => (
               <div
@@ -45,14 +38,12 @@ const MateriSemua = () => {
                     <div className="h-56 w-full">
                       <div className="relative h-full w-full overflow-hidden">
                         <Image
-                          src={
-                            item.thumbnail
-                              ? item.thumbnail
-                              : '/assets/image-placeholder.png'
-                          }
+                          src={item.thumbnail || placeholderThumbnail}
                           layout="fill"
                           objectFit="cover"
                           alt="Content"
+                          blurDataURL={placeholderThumbnail.blurDataURL}
+                          placeholder="blur"
                           className="absolute inset-0 h-full w-full rounded-lg"
                         />
                       </div>
