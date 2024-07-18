@@ -1,6 +1,6 @@
-import { AuthService } from '@/service/AuthService';
+import { AuthService } from '@/services/auth';
 import { LoginType, RegisterType } from '@/types/auth';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 
@@ -24,6 +24,7 @@ const useAuthRegister = () => {
 
 const useAuthLogout = () => {
   const { push } = useRouter();
+  const queryClient = useQueryClient();
 
   return useMutation({
     mutationKey: ['logout'],
@@ -32,6 +33,7 @@ const useAuthLogout = () => {
     },
     onSuccess: () => {
       push('/');
+      queryClient.invalidateQueries({ queryKey: ['getAccessToken'] });
       toast.success('Berhasil Logout');
     },
     onError: () => {

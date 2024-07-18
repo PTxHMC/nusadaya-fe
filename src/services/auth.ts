@@ -17,7 +17,7 @@ export const AuthService = {
   },
   getAccessToken: async () => {
     try {
-      const res = await fetcher.get('users/token');
+      const res = await fetcher.get('/users/token');
       return res.data;
     } catch (error) {
       throw error;

@@ -1,5 +1,5 @@
 import { fetcherAuth, fetcher } from '@/lib/axios';
-import { LearningContentType } from '@/types/LearningContent';
+import { LearningContentType } from '@/types/learning-content';
 
 export const LearningContentService = {
   getContents: async () => {

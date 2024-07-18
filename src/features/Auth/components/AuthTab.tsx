@@ -1,16 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import {
-  Button,
-  Input,
-  Select,
-  SelectItem,
-  Tab,
-  Tabs
-} from '@nextui-org/react';
+import { Button, Input, Tab, Tabs } from '@nextui-org/react';
 import { useFormik } from 'formik';
-import { LockKeyhole, Mail, SquareUserRound, UsersRound } from 'lucide-react';
+import { LockKeyhole, Mail, SquareUserRound } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { RegisterSchema } from '@/validations/auth';
 import { EyeSlashFilledIcon } from './EyeSlashFilledIcon';
@@ -33,8 +26,7 @@ const AuthTab = () => {
       username: '',
       email: '',
       password: '',
-      confirm_password: '',
-      role: ''
+      confirm_password: ''
     },
     validationSchema: RegisterSchema,
     onSubmit: values => {
@@ -230,28 +222,6 @@ const AuthTab = () => {
               className="lg:w-[24rem]"
               onChange={handleFormInput}
             />
-            <Select
-              label="Daftar Sebagai"
-              name="role"
-              labelPlacement="outside"
-              size="lg"
-              isRequired
-              errorMessage={formRegister.errors.role}
-              isInvalid={
-                !!(formRegister.touched.role && formRegister.errors.role)
-              }
-              startContent={
-                <UsersRound className="pointer-events-none flex-shrink-0" />
-              }
-              className="lg:w-[24rem]"
-              onChange={handleFormInput}
-            >
-              {roles.map(role => (
-                <SelectItem key={role.key} value={role.key}>
-                  {role.label}
-                </SelectItem>
-              ))}
-            </Select>
           </div>
           <div className="max-w-sm">
             {isPending ? (

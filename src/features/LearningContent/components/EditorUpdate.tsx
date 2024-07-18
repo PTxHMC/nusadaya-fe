@@ -38,7 +38,6 @@ const EditorUpdate = () => {
     },
     onSubmit: (values: any) => {
       updateContent(values);
-      console.log(values);
     }
   });
 
@@ -72,7 +71,6 @@ const EditorUpdate = () => {
 
   useEffect(() => {
     if (contentSuccess) {
-      console.log(contentData);
       formik.setFieldValue('title', contentData.title);
       formik.setFieldValue('content', contentData.content);
 
@@ -89,7 +87,7 @@ const EditorUpdate = () => {
   }, [contentSuccess]);
 
   return (
-    <div className="mt-16 py-8">
+    <>
       {imageUrl ? (
         <div className="mb-4 h-80 w-full rounded-xl px-6">
           <div className="relative h-full w-full overflow-hidden rounded-xl border-2">
@@ -97,8 +95,7 @@ const EditorUpdate = () => {
               src={imageUrl}
               alt="thumbnail"
               layout="fill"
-              objectFit="cover"
-              className="absolute inset-0 h-full w-full rounded-xl"
+              className="absolute inset-0 h-full w-full rounded-xl object-cover"
             />
           </div>
         </div>
@@ -113,8 +110,7 @@ const EditorUpdate = () => {
               }
               alt="thumbnail"
               layout="fill"
-              objectFit="cover"
-              className="absolute inset-0 h-full w-full rounded-xl"
+              className="absolute inset-0 h-full w-full rounded-xl object-cover"
             />
           </div>
         </div>
@@ -134,7 +130,7 @@ const EditorUpdate = () => {
           <div className="flex gap-3">
             <Button
               as={Link}
-              href="/dashboard"
+              href="/belajar"
               variant="bordered"
               className="border-[#6B6673] text-[#6B6673]"
             >
@@ -193,7 +189,7 @@ const EditorUpdate = () => {
           <div></div>
         </div>
       </form>
-    </div>
+    </>
   );
 };
 

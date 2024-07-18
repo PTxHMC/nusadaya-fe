@@ -1,5 +1,4 @@
 'use client';
-import NavigationBar from '@/components/navigation-bar';
 import { tokenAccess } from '@/lib/utils';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
@@ -21,8 +20,7 @@ const EditPage = () => {
   }, [push]);
 
   return (
-    <div className="h-screen bg-[url('/assets/bg-base.png')]">
-      <NavigationBar />
+    <div className="h-screen bg-[url('/assets/bg-base.png')] py-8">
       <Editor />
     </div>
   );

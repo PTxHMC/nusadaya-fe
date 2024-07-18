@@ -1,13 +1,14 @@
-import { AuthService } from '@/service/AuthService';
 import axios from 'axios';
+import { BASE_URL } from '@/datas/config';
+import { AuthService } from '@/services/auth';
 
 const fetcher = axios.create({
-  baseURL: 'http://localhost:5000/api',
+  baseURL: `${BASE_URL}/api`,
   withCredentials: true
 });
 
 const fetcherAuth = axios.create({
-  baseURL: 'http://localhost:5000/api',
+  baseURL: `${BASE_URL}/api`,
   withCredentials: true
 });
 

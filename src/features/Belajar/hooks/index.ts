@@ -1,4 +1,4 @@
-import { LearningContentService } from '@/service/LearningContent';
+import { LearningContentService } from '@/services/learning-content';
 import { useQuery } from '@tanstack/react-query';
 
 const useGetMyContents = () => {

@@ -1,11 +1,5 @@
 import * as Yup from 'yup';
 
-const Role = Object.freeze({
-  USER: 'USER',
-  TEACHER: 'TEACHER',
-  ADMIN: 'ADMIN'
-});
-
 export const RegisterSchema = Yup.object().shape({
   username: Yup.string()
     .min(3, 'Username minimal 3 karakter')
@@ -21,9 +15,5 @@ export const RegisterSchema = Yup.object().shape({
     .required('Password wajib diisi'),
   confirm_password: Yup.string()
     .oneOf([Yup.ref('password')], 'Password dan konfirmasi password harus sama')
-    .required('Konfirmasi password wajib diisi'),
-  role: Yup.string().oneOf(
-    Object.values(Role),
-    'Role harus salah satu dari ${values}'
-  )
+    .required('Konfirmasi password wajib diisi')
 });

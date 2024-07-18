@@ -1,6 +1,6 @@
-import { CategoryService } from '@/service/Category';
-import { LearningContentService } from '@/service/LearningContent';
-import { LearningContentType } from '@/types/LearningContent';
+import { CategoryService } from '@/services/category';
+import { LearningContentService } from '@/services/learning-content';
+import { LearningContentType } from '@/types/learning-content';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 

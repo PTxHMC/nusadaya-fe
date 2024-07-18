@@ -1,4 +1,4 @@
-import { AuthService } from '@/service/AuthService';
+import { AuthService } from '@/services/auth';
 
 export const getAssetUrl = (url: string) => `/assets${url}`;
 

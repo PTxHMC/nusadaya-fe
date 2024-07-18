@@ -9,22 +9,21 @@ import placeholderThumbnail from '@/assets/image-placeholder.png';
 
 const MateriSemua = () => {
   const { data: contentData, isSuccess } = useGetContents();
-  console.log(contentData);
 
   const { push } = useRouter();
 
   const toRead = (id: number) => {
-    push(`/dashboard/read?id=${id}`);
+    push(`/belajar/read?id=${id}`);
   };
 
   return (
     <div className="container mx-auto py-8">
       <div className="mx-6 flex flex-col gap-8 border-t-1">
-        <h1 className="mt-6 text-2xl font-bold text-primary-text">
+        <h1 className="mt-4 text-2xl font-bold text-primary-text">
           Materi Pilihan Untuk Anda
         </h1>
-        <div className="my-2 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-          {isSuccess ? (
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+          {isSuccess &&
             contentData.map((item: any) => (
               <div
                 key={item.id}
@@ -40,11 +39,10 @@ const MateriSemua = () => {
                         <Image
                           src={item.thumbnail || placeholderThumbnail}
                           layout="fill"
-                          objectFit="cover"
                           alt="Content"
                           blurDataURL={placeholderThumbnail.blurDataURL}
                           placeholder="blur"
-                          className="absolute inset-0 h-full w-full rounded-lg"
+                          className="absolute inset-0 h-full w-full rounded-lg object-cover"
                         />
                       </div>
                     </div>
@@ -61,10 +59,7 @@ const MateriSemua = () => {
                   </CardBody>
                 </Card>
               </div>
-            ))
-          ) : (
-            <div>data kosong</div>
-          )}
+            ))}
         </div>
       </div>
     </div>
