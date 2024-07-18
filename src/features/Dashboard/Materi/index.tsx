@@ -6,7 +6,7 @@ import { useGetContents } from '../hooks';
 import Image from 'next/image';
 
 const Materi = () => {
-  const { data: contentData } = useGetContents();
+  const { data: contentData, isSuccess } = useGetContents();
   console.log(contentData);
   return (
     <div className="container mx-auto">
@@ -22,24 +22,34 @@ const Materi = () => {
           </Button>
         </div>
         <div className="mx-2 my-2 flex flex-col flex-wrap justify-between gap-2 md:mx-10 md:flex-wrap md:justify-between md:gap-6 lg:mx-12 lg:flex-row lg:gap-2">
-          {contentData.map((item: any) => (
-            <div key={item.id}>
-              <Card>
-                <CardBody className="m-2 h-max w-60">
-                  <Image
-                    src="/time-content.png"
-                    width={0}
-                    alt="Content"
-                    height={0}
-                    sizes="100vw"
-                    className="h-auto w-full rounded-t-md object-cover"
-                  />
-                  <h1 className="font-bold">{item.title}</h1>
-                  <p>{item.categories}</p>
-                </CardBody>
-              </Card>
-            </div>
-          ))}
+          {isSuccess ? (
+            contentData.map((item: any) => (
+              <div key={item.id}>
+                <Card>
+                  <CardBody className="m-2 h-max w-60">
+                    <Image
+                      src="/assets/time-content.png"
+                      width={0}
+                      alt="Content"
+                      height={0}
+                      sizes="100vw"
+                      className="h-auto w-full rounded-t-md object-cover"
+                    />
+                    <h1 className="font-bold">{item.title}</h1>
+                    <div>
+                      {item.categories.map(
+                        (category: string, index: number) => (
+                          <p key={index}>{category}</p>
+                        )
+                      )}
+                    </div>
+                  </CardBody>
+                </Card>
+              </div>
+            ))
+          ) : (
+            <div>data kosong</div>
+          )}
         </div>
       </div>
     </div>
