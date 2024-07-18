@@ -13,8 +13,8 @@ const AboutSection = () => {
         />
       </div>
       <div className="mx-auto max-w-3xl space-y-4 text-primary-text lg:flex-auto">
-        <h2 className="text-4xl font-semibold">Tentang Kami</h2>
-        <h1 className="text-7xl font-semibold leading-tight">
+        <h2 className="text-2xl font-semibold">Tentang Kami</h2>
+        <h1 className="text-5xl font-semibold leading-tight md:text-7xl">
           Didirikan Pada Tahun <strong>2024</strong>
         </h1>
         <p className="text-balance text-secondary-text">
