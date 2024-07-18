@@ -1,16 +1,18 @@
 'use client';
-import NavigationBar from '@/components/navigation-bar';
-import { useSearchParams } from 'next/navigation';
-import { useGetContentById } from '../hooks';
 import ReactMarkdown from 'react-markdown';
-import './style/style.css';
+import { redirect, useRouter, useSearchParams } from 'next/navigation';
+import { useGetContentById } from '../hooks';
 import Image from 'next/image';
+import NavigationBar from '@/components/navigation-bar';
 import { Avatar } from '@nextui-org/react';
 import { formatDate } from '@/lib/utils';
+import { ArrowLeft } from 'lucide-react';
+import './style/style.css';
 
 const ReadPage = () => {
   const param = useSearchParams();
   const idContent = parseInt(param.get('id') ?? '');
+  const { push } = useRouter();
   const { data: contentData, isSuccess } = useGetContentById(idContent);
   console.log(contentData);
 
@@ -32,7 +34,14 @@ const ReadPage = () => {
               </div>
             </div>
           ) : null}
-          <div>
+          <div className="relative">
+            <ArrowLeft
+              className="absolute -left-16 top-1 cursor-pointer"
+              size={48}
+              onClick={() => {
+                push('/dashboard');
+              }}
+            />
             <h1 className="mb-2 text-5xl font-semibold leading-tight">
               {contentData?.title}
             </h1>

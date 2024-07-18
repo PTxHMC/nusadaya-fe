@@ -1,11 +1,13 @@
 import MainDash from './Lecturer/Main';
-import Materi from './Materi';
+import MateriSaya from './Materi/MateriSaya';
+import MateriSemua from './Materi/MateriSemua';
 
 const DashboardPage = () => {
   return (
     <div>
       <MainDash />
-      <Materi />
+      <MateriSaya />
+      <MateriSemua />
     </div>
   );
 };
