@@ -78,7 +78,7 @@ const Belajar = () => {
           <h1 className="text-5xl font-bold text-[#4F4F4F]">Hello!</h1>
           <div className="flex items-center justify-between">
             <h1 className="text-5xl font-bold text-[#4F4F4F]">
-              Mau <span className="text-[#9C8D8D]">apa</span> hari ini?
+              Mau <span className="text-[#9C8D8D]">belajar</span> apa hari ini?
             </h1>
             <Button
               variant="solid"
