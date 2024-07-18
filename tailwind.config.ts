@@ -12,6 +12,7 @@ const config: Config = {
         'primary-1': '#9C8D8D',
         'primary-2': '#B09F9F',
         'primary-text': '#4F4F4F',
+        'secondary-text': '#828282',
         'white-1': '#FFFFFF',
         'white-2': '#FAFAFA'
       }
