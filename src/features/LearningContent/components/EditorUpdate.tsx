@@ -23,7 +23,7 @@ const EditorUpdate = () => {
     useGetContentById(idContent);
   const { data: categories, isSuccess: categorySuccess } = useGetCategories();
 
-  const { mutate: updateContent } = useUpdateContent(
+  const { mutate: updateContent, isPending } = useUpdateContent(
     {
       onSuccess: (data: any) => {
         console.log('success', data);
@@ -78,11 +78,11 @@ const EditorUpdate = () => {
   const handleBlockNote = async () => {
     const markdown = await editor.blocksToMarkdownLossy(editor.document);
     formik.setFieldValue('content', markdown);
-    console.log(markdown);
   };
 
   useEffect(() => {
     if (contentSuccess) {
+      console.log(contentData);
       formik.setFieldValue('title', contentData.title);
       formik.setFieldValue('content', contentData.content);
 
@@ -112,7 +112,23 @@ const EditorUpdate = () => {
             />
           </div>
         </div>
-      ) : null}
+      ) : (
+        <div className="h-80 w-full rounded-xl px-6">
+          <div className="relative h-full w-full overflow-hidden rounded-xl border-2">
+            <Image
+              src={
+                contentData
+                  ? contentData.thumbnail
+                  : '/assets/image-placeholder.png'
+              }
+              alt="thumbnail"
+              layout="fill"
+              objectFit="cover"
+              className="absolute inset-0 h-full w-full rounded-xl"
+            />
+          </div>
+        </div>
+      )}
       <form
         onSubmit={formik.handleSubmit}
         className="mx-6 rounded-2xl bg-white shadow-md shadow-primary-2"
@@ -136,6 +152,7 @@ const EditorUpdate = () => {
               type="submit"
               className="bg-primary-1 text-white"
               startContent={<Send size={16} />}
+              isLoading={isPending ? true : false}
             >
               Post Content
             </Button>

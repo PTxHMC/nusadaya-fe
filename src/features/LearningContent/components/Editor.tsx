@@ -14,16 +14,7 @@ import Image from 'next/image';
 const Editor = () => {
   const [imageUrl, setImageUrl] = useState('');
 
-  const editor = useCreateBlockNote({
-    initialContent: [
-      {
-        type: 'paragraph',
-        content: 'Ketikkan isi di sini...'
-      }
-    ]
-  });
-
-  const { mutate: createContent } = useCreateContent({
+  const { mutate: createContent, isPending } = useCreateContent({
     onSuccess: (data: any) => {
       console.log('success', data);
     },
@@ -34,6 +25,15 @@ const Editor = () => {
 
   const { data: categories, isSuccess } = useGetCategories();
 
+  const editor = useCreateBlockNote({
+    initialContent: [
+      {
+        type: 'paragraph',
+        content: 'Ketikkan isi di sini...'
+      }
+    ]
+  });
+
   const formik = useFormik({
     initialValues: {
       title: '',
@@ -43,7 +43,6 @@ const Editor = () => {
     },
     onSubmit: (values: any) => {
       createContent(values);
-      console.log(values);
     }
   });
 
@@ -52,9 +51,7 @@ const Editor = () => {
   };
   const handleFileInput = (e: any) => {
     const file = e.target.files[0];
-
     setImageUrl(URL.createObjectURL(file));
-
     formik.setFieldValue('thumbnail', file);
   };
   const handleCategory = (e: any) => {
@@ -73,7 +70,6 @@ const Editor = () => {
   const handleBlockNote = async () => {
     const markdown = await editor.blocksToMarkdownLossy(editor.document);
     formik.setFieldValue('content', markdown);
-    console.log(markdown);
   };
 
   return (
@@ -109,10 +105,12 @@ const Editor = () => {
             >
               Kembali
             </Button>
+
             <Button
               type="submit"
               className="bg-primary-1 text-white"
               startContent={<Send size={16} />}
+              isLoading={isPending ? true : false}
             >
               Post Content
             </Button>
