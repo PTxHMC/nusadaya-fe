@@ -1,4 +1,4 @@
-import { AuthService } from '@/service/auth';
+import { AuthService } from '@/service/AuthService';
 import axios from 'axios';
 
 const fetcher = axios.create({

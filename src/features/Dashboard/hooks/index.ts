@@ -1,6 +1,16 @@
 import { LearningContentService } from '@/service/LearningContent';
 import { useQuery } from '@tanstack/react-query';
 
+const useGetMyContents = () => {
+  return useQuery({
+    queryKey: ['getMyContents'],
+    queryFn: async () => {
+      const res = await LearningContentService.getMyContents();
+      return res.data;
+    }
+  });
+};
+
 const useGetContents = () => {
   return useQuery({
     queryKey: ['getContents'],
@@ -11,4 +21,4 @@ const useGetContents = () => {
   });
 };
 
-export { useGetContents };
+export { useGetMyContents, useGetContents };
