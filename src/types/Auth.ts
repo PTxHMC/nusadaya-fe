@@ -9,3 +9,12 @@ export interface LoginType {
   email: string;
   password: string;
 }
+
+export interface jwtUserDecode {
+  iat: number;
+  ext: number;
+  username: string;
+  email: string;
+  id: string;
+  role: string;
+}
