@@ -43,11 +43,7 @@ const MainDash = () => {
           </NavbarContent>
           <NavbarContent justify="end">
             <NavbarItem>
-              <Button
-                href="/sign-up"
-                variant="bordered"
-                className="border-gray-700"
-              >
+              <Button href="" variant="bordered" className="border-gray-700">
                 Nama
               </Button>
             </NavbarItem>
