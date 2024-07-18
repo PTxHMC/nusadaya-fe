@@ -1,0 +1,27 @@
+h1 {
+  @apply text-4xl font-semibold;
+}
+
+h2 {
+  @apply text-2xl font-semibold;
+}
+
+h3 {
+  @apply text-xl font-semibold;
+}
+
+ol {
+  @apply ml-6 list-decimal;
+}
+
+ul {
+  @apply ml-6 list-disc;
+}
+
+p {
+  @apply leading-loose;
+}
+
+li {
+  @apply leading-loose;
+}

@@ -1,5 +1,5 @@
 import { fetcher } from '@/lib/axios';
-import { LoginType, RegisterType } from '@/types/auth';
+import { LoginType, RegisterType } from '@/types/Auth';
 
 export const AuthService = {
   register: async (body: RegisterType) => {

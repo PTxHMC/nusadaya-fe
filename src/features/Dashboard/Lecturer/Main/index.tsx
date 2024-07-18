@@ -10,8 +10,7 @@ import {
 } from '@nextui-org/react';
 import React, { useState } from 'react';
 import NextLink from 'next/link';
-import { DashboardItems } from '@/datas/dashboard';
-import { Icon } from 'lucide-react';
+import { SquarePen } from 'lucide-react';
 
 const MainDash = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -59,16 +58,14 @@ const MainDash = () => {
           </h1>
         </div>
         <div className="mx-4 flex gap-2">
-          {DashboardItems.map(item => (
-            <div key={item.id} className="">
-              <Button
-                className={`${item.id === 1 ? 'bg-primary-text text-white' : 'bg-primary-1 text-white'}`}
-              >
-                <item.icon />
-                {item.title}
-              </Button>
-            </div>
-          ))}
+          <Button
+            as={Link}
+            href="/dashboard/write"
+            className={'bg-primary-1 text-white'}
+            startContent={<SquarePen />}
+          >
+            Tulis Materi
+          </Button>
         </div>
       </div>
     </div>
